@@ -22,7 +22,7 @@ jobs:
         run: python -m pip install --upgrade pip
 
       - name: Install dependencies
-        run: python -m pip install requests pandas tqdm
+        run: python -m pip install requests pandas tqdm pyarrow
 
       - name: Show installed packages
         run: pip list
