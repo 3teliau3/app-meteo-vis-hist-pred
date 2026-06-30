@@ -148,7 +148,7 @@ for city, lat, lon in cities:
         
         threading.Thread(target=progress, daemon=True).start()
         
-        response = r.get(url_historique, timeout=240)
+        response = r.get(url_historique, timeout=60)
         response.raise_for_status()
 
         maj = response.json()
