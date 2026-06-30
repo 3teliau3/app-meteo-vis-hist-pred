@@ -1,0 +1,17 @@
+id: maj-weather
+
+namespace: meteo
+
+tasks:
+  - id: update-weather
+
+    type: io.kestra.plugin.scripts.python.Commands
+
+    containerImage: python:3.12
+
+    beforeCommands:
+      - pip install -r /workspace/requirements.txt
+
+    commands:
+      - cd /workspace
+      - python maj.py
