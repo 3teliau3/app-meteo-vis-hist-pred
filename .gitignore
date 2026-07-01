@@ -1,0 +1,26 @@
+# Environnements Python
+env_projet3/
+venv/
+.venv/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+
+# Secrets / config sensible
+.env
+
+# IDE
+.vscode/
+.idea/

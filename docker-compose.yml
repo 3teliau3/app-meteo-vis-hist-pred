@@ -1,20 +1,44 @@
-version: "3.8"
-
 services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: kestra
+      POSTGRES_USER: kestra
+      POSTGRES_PASSWORD: kestra
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
   kestra:
     image: kestra/kestra:latest
-    container_name: kestra
-    command: server standalone
-
+    depends_on:
+      - postgres
     ports:
       - "8080:8080"
-
+    command: server standalone
+    user: "root"
     volumes:
       - ./flows:/app/flows
-      - ./PROJET_3:/workspace
-
+      - ./:/workspace
     environment:
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
-            url: jdbc:h2:mem:public
+            url: jdbc:postgresql://postgres:5432/kestra
+            driverClassName: org.postgresql.Driver
+            username: kestra
+            password: kestra
+
+        kestra:
+          repository:
+            type: postgres
+
+          queue:
+            type: postgres
+
+          storage:
+            type: local
+            local:
+              base-path: /app/storage
+
+volumes:
+  postgres-data:
