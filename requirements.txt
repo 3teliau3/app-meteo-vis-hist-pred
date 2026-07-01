@@ -1,3 +1,5 @@
 requests
 pandas
 tqdm
+sqlalchemy
+psycopg2-binary
